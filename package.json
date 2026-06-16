@@ -1,0 +1,23 @@
+{
+  "name": "toolshop-test-automation",
+  "version": "1.0.0",
+  "description": "Initial test automation framework for Toolshop",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dilekfirat/toolshop-test-automation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/dilekfirat/toolshop-test-automation/issues"
+  },
+  "homepage": "https://github.com/dilekfirat/toolshop-test-automation#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.61.0",
+    "@types/node": "^25.9.3"
+  }
+}
