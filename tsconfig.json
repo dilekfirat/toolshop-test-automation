@@ -6,10 +6,12 @@
     "strict": true,
     "allowJs": true,
     "noEmit": true,
-    "types": ["node"]
+    "types": ["node"],
+    "resolveJsonModule": true
   },
   "include": [
     "**/*.ts",
-    "**/*.js"
+    "**/*.js",
+    "**/*.json"
   ]
 }
