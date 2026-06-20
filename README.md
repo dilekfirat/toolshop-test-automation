@@ -1,6 +1,6 @@
 # Toolshop Test Automation
 
-Automated testing solution for the Toolshop application built with Playwright and JavaScript.
+Automated testing solution for the Toolshop application built with Playwright and TypeScript.
 
 ## Purpose
 
@@ -19,7 +19,7 @@ The objective is to provide fast feedback through a reliable smoke regression su
 ## Technology Stack
 
 * Playwright
-* JavaScript
+* TypeScript
 * Page Object Model (POM)
 * Data-Driven Testing (DDT)
 * GitHub Actions
