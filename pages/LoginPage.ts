@@ -5,12 +5,14 @@ export class LoginPage {
     readonly emailInput: Locator;
     readonly passwordInput: Locator;
     readonly loginButton: Locator;
+    readonly errorMessage: Locator;
 
     constructor(page: Page) {
         this.page = page;
         this.emailInput = page.locator('[data-test="email"]');
         this.passwordInput = page.locator('[data-test="password"]');
         this.loginButton = page.locator('[data-test="login-submit"]');
+        this.errorMessage = page.locator('[data-test="login-error"]');
     }
 
     async openLoginPage(): Promise<void> {
