@@ -5,7 +5,7 @@ import { generateUniqueEmail } from '../utils/testDataGenerator';
 import { UserApi } from '../api/UserApi';
 
 
-test('user can login with valid credentials', async ({ page, request }) => {
+test('T1_login_validUserWithCorrectPassword_redirectedToAccountPage', async ({ page, request }) => {
 
     const loginPage = new LoginPage(page);
 
@@ -24,7 +24,7 @@ test('user can login with valid credentials', async ({ page, request }) => {
     await expect(page).toHaveURL(/.*\/account$/);
 });
 
-test('user cannot login with invalid credentials', async ({ page, request }) => {
+test('T4_login_invalidUserWithIncorrectPassword_userSeesErrorMessage', async ({ page, request }) => {
 
     const loginPage = new LoginPage(page);
     await loginPage.openLoginPage();

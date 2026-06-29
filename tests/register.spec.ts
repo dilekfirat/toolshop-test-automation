@@ -5,7 +5,7 @@ import { RegistrationPage } from '../pages/RegistrationPage';
 import { UserApi } from '../api/UserApi';
 
 
-test('user can register with valid data', async ({ page, request }) => {
+test('T1_registeration_validUser_userIsRegistered', async ({ page, request }) => {
 
     const registerPage = new RegistrationPage(page);
 
