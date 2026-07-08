@@ -16,6 +16,8 @@ export class UserApi {
             }
         );
 
+        console.log(response.status());
+        console.log(await response.text());
         expect(response.ok()).toBeTruthy();
     }
 

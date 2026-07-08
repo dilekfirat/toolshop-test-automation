@@ -36,12 +36,12 @@ export default defineConfig({
   reporter: [
     ['list'],
     ['html'],
-    ['@testiny/automation/reporters/playwright', {
+    /*['@testiny/automation/reporters/playwright', {
     enable: true,
     project: 'TTT426',
     sourceName: 'playwright'
     // API key is loaded from the TESTINY_API_KEY environment variable
-  }]
+  }]*/
 ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -50,7 +50,7 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     screenshot: 'only-on-failure',
-    trace: 'on-first-retry',
+    trace: 'retain-on-failure',
   },
 
   /* Configure projects for major browsers */
