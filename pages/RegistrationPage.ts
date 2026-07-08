@@ -1,4 +1,5 @@
 import { Page, Locator } from '@playwright/test';
+import { User } from '../models/User';
 
 export class RegistrationPage {
     readonly page: Page;
@@ -17,7 +18,7 @@ export class RegistrationPage {
     readonly registerButton: Locator;
     //readonly emailErrorMessage: Locator;
     //readonly passwordErrorMessage: Locator;
-    
+
 
     constructor(page: Page) {
         this.page = page;
@@ -40,7 +41,7 @@ export class RegistrationPage {
     async openRegistrationPage(): Promise<void> {
         await this.page.goto('/auth/register');
     }
-    
+
     async enterFirstName(firstName: string): Promise<void> {
         await this.firstNameInput.fill(firstName);
     }
@@ -93,19 +94,19 @@ export class RegistrationPage {
         await this.registerButton.click();
     }
 
-    async registerUser(firstName: string, lastName: string, dob: string, country: string, postalCode: string, houseNumber: string, street: string, city: string, state: string, phone: string, email: string, password: string): Promise<void> {
-        await this.enterFirstName(firstName);
-        await this.enterLastName(lastName);
-        await this.enterDOB(dob);
-        await this.selectCountry(country);
-        await this.enterPostalCode(postalCode);
-        await this.enterHouseNumber(houseNumber);
-        await this.enterStreet(street);
-        await this.enterCity(city);
-        await this.enterState(state);
-        await this.enterPhone(phone);
-        await this.enterEmail(email);
-        await this.enterPassword(password);
+    async registerUser(user: User): Promise<void> {
+        await this.enterFirstName(user.first_name);
+        await this.enterLastName(user.last_name);
+        await this.enterDOB(user.dob);
+        await this.selectCountry(user.address.country);
+        await this.enterPostalCode(user.address.postal_code);
+        await this.enterHouseNumber(user.address.house_number);
+        await this.enterStreet(user.address.street);
+        await this.enterCity(user.address.city);
+        await this.enterState(user.address.state);
+        await this.enterPhone(user.phone);
+        await this.enterEmail(user.email);
+        await this.enterPassword(user.password);
         await this.clickRegister();
     }
 }

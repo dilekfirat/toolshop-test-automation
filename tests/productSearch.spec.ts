@@ -15,12 +15,10 @@ test('T1_productSearch_validProduct_userCanSearchForProduct', async ({ page, req
     await homePage.searchForProduct(product.name);
 
     await expect(
-    page.locator('[data-test="search-result-count"]')
-).toContainText(product.name);
+        homePage.searchResultCount
+    ).toContainText(product.name);
 
-const searchedProduct = page
-    .locator('[data-test="product-name"]')
-    .filter({ hasText: product.name });
-
-await expect(searchedProduct).toBeVisible();
+    await expect(
+        homePage.getProductByName(product.name)
+    ).toBeVisible();
 });

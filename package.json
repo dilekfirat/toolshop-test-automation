@@ -3,7 +3,13 @@
   "version": "1.0.0",
   "description": "Initial test automation framework for Toolshop",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dilekfirat/toolshop-test-automation.git"

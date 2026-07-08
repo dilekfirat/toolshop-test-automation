@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig, devices } from '@playwright/test';
 import 'dotenv/config';
+import { environments } from './config/environments';
 
 /**
  * Read environment variables from file.
@@ -34,6 +35,7 @@ export default defineConfig({
 
   reporter: [
     ['list'],
+    ['html'],
     ['@testiny/automation/reporters/playwright', {
     enable: true,
     project: 'TTT426',
@@ -44,7 +46,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
-    baseURL: 'https://practicesoftwaretesting.com',
+    baseURL: environments.qa.baseUrl,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     screenshot: 'only-on-failure',

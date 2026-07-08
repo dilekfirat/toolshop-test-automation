@@ -3,6 +3,7 @@ import { LoginPage } from '../pages/LoginPage';
 import userData from '../test-data/user.json';
 import { generateUniqueEmail } from '../utils/testDataGenerator';
 import { UserApi } from '../api/UserApi';
+import { User } from '../models/User';
 
 
 test('T1_login_validUserWithCorrectPassword_redirectedToAccountPage', async ({ page, request }) => {
@@ -11,7 +12,7 @@ test('T1_login_validUserWithCorrectPassword_redirectedToAccountPage', async ({ p
 
     await loginPage.openLoginPage();
 
-    const user = {
+    const user: User = {
         ...userData,
         email: generateUniqueEmail()
     };
@@ -29,7 +30,7 @@ test('T4_login_invalidUserWithIncorrectPassword_userSeesErrorMessage', async ({ 
     const loginPage = new LoginPage(page);
     await loginPage.openLoginPage();
 
-    const user = {
+    const user: User = {
         ...userData,
         email: generateUniqueEmail()
     };

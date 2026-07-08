@@ -31,4 +31,10 @@ export class HomePage {
         await this.enterSearchQuery(query);
         await this.clickSearch();
     }
+
+    getProductByName(name: string) {
+        return this.page
+            .locator('[data-test="product-name"]')
+            .filter({ hasText: name });
+    }
 }   
