@@ -25,6 +25,7 @@ test('T1_productSearch_validProduct_userCanSearchForProduct', async ({ page, req
 
     await homePage.searchForProduct(product.name);
 
+    Logger.info('Verifying search results');
     await expect(
         homePage.searchResultCount
     ).toContainText(product.name);

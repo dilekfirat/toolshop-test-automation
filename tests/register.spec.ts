@@ -29,6 +29,8 @@ test('T1_registration_validUser_userIsRegistered', async ({ page, request }) => 
 
     await registerPage.registerUser(user);
 
+    
+    Logger.info('Verifying registration success');
     await expect(page).toHaveURL(/.*\/login$/);
 
     const userApi = new UserApi();
@@ -37,6 +39,8 @@ test('T1_registration_validUser_userIsRegistered', async ({ page, request }) => 
         user
     );
 
+    
+    Logger.info('Verifying authentication response');
     expect(loginResponse.status()).toBe(200);
 
     const responseBody = await loginResponse.json();

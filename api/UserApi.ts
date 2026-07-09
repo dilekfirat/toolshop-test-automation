@@ -1,6 +1,7 @@
-import { APIRequestContext, expect } from '@playwright/test';
+import { APIRequestContext, APIResponse, expect } from '@playwright/test';
 import { User } from '../models/User';
 import { environments } from '../config/environments';
+import { Logger } from '../utils/logger/logger';
 
 export class UserApi {
 
@@ -9,6 +10,7 @@ export class UserApi {
         user: User
     ): Promise<void> {
 
+        Logger.info('Creating user via API');
         const response = await request.post(
             `${environments.qa.apiUrl}/users/register`,
             {
@@ -16,17 +18,18 @@ export class UserApi {
             }
         );
 
-        console.log(response.status());
-        console.log(await response.text());
+        Logger.info('Verifying user creation response');
         expect(response.ok()).toBeTruthy();
     }
 
     async loginUser(
         request: APIRequestContext,
         user: User
-    ) {
+    ): Promise<APIResponse> {
 
-        return await request.post(
+        Logger.info('Logging in user via API');
+
+        const response = await request.post(
             `${environments.qa.apiUrl}/users/login`,
             {
                 data: {
@@ -35,5 +38,10 @@ export class UserApi {
                 }
             }
         );
+
+        Logger.info('Verifying login response');
+        expect(response.ok()).toBeTruthy();
+
+        return response;
     }
 }

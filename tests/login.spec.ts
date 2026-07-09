@@ -49,6 +49,8 @@ test('T4_login_invalidUserWithIncorrectPassword_userSeesErrorMessage', async ({ 
     await userApi.createUser(request, user);
 
     await loginPage.loginUser(user.email, user.password + 'wrong');
+
+    Logger.info('Verifying login error message');
     await expect(loginPage.errorMessage).toBeVisible();
     await expect(loginPage.errorMessage).toHaveText('Invalid email or password');
     await expect(page).toHaveURL(/.*\/auth\/login$/);

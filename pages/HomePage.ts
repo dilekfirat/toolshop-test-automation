@@ -1,4 +1,5 @@
 import { Page, Locator } from '@playwright/test';
+import { Logger } from '../utils/logger/logger';
 
 export class HomePage {
     readonly page: Page;
@@ -16,14 +17,17 @@ export class HomePage {
     }
 
     async openHomePage(): Promise<void> {
+        Logger.info('Opening home page');
         await this.page.goto('/');
     }
 
     async enterSearchQuery(query: string): Promise<void> {
+        Logger.info('Entering search term');
         await this.searchInput.fill(query);
     }
 
     async clickSearch(): Promise<void> {
+        Logger.info('Clicking search button');
         await this.searchButton.click();
     }
 
@@ -32,7 +36,7 @@ export class HomePage {
         await this.clickSearch();
     }
 
-    getProductByName(name: string) {
+    getProductByName(name: string) : Locator {
         return this.page
             .locator('[data-test="product-name"]')
             .filter({ hasText: name });
