@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../fixtures/test';
 import userData from '../test-data/user.json';
 import { generateUniqueEmail } from '../utils/testDataGenerator';
 import { RegistrationPage } from '../pages/RegistrationPage';
@@ -6,15 +6,6 @@ import { UserApi } from '../api/UserApi';
 import { User } from '../models/User';
 import { Logger } from '../utils/logger/logger';
 
-test.beforeEach(async ({}, testInfo) => {
-    Logger.info(`===== START: ${testInfo.title} =====`);
-});
-
-test.afterEach(async ({}, testInfo) => {
-    Logger.info(
-        `===== END: ${testInfo.title} (${testInfo.status}) =====`
-    );
-});
 
 test('T1_registration_validUser_userIsRegistered', async ({ page, request }) => {
 

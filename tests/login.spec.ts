@@ -1,20 +1,10 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../fixtures/test';
 import { LoginPage } from '../pages/LoginPage';
 import userData from '../test-data/user.json';
 import { generateUniqueEmail } from '../utils/testDataGenerator';
 import { UserApi } from '../api/UserApi';
 import { User } from '../models/User';
 import { Logger } from '../utils/logger/logger';
-
-test.beforeEach(async ({}, testInfo) => {
-    Logger.info(`===== START: ${testInfo.title} =====`);
-});
-
-test.afterEach(async ({}, testInfo) => {
-    Logger.info(
-        `===== END: ${testInfo.title} (${testInfo.status}) =====`
-    );
-});
 
 
 test('T1_login_validUserWithCorrectPassword_redirectedToAccountPage', async ({ page, request }) => {
