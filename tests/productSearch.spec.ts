@@ -1,8 +1,16 @@
-import { test, expect } from '../fixtures/test';
+import { test, expect } from '@playwright/test';
 import { HomePage } from '../pages/HomePage';
 import { ProductApi } from '../api/ProductApi';
 import { Logger } from '../utils/logger/logger';
 
+// Test lifecycle logging
+test.beforeEach(async ({}, testInfo) => {
+    Logger.info(`===== START: ${testInfo.title} =====`);
+});
+
+test.afterEach(async ({}, testInfo) => {
+    Logger.info(`===== END: ${testInfo.title} (${testInfo.status}) =====`);
+});
 
 test('T1_productSearch_validProduct_userCanSearchForProduct', async ({ page, request }) => {
 

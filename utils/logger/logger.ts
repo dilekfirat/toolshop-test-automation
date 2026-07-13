@@ -1,19 +1,21 @@
-import { winstonLogger } from './winstonLogger';
+import { getLogger } from './winstonLogger';
 
 export class Logger {
-  static info(message: string): void {
-    winstonLogger.info(message);
-  }
 
-  static warn(message: string): void {
-    winstonLogger.warn(message);
-  }
+    static info(message: string): void {
+        getLogger().info(message);
+    }
 
-  static error(message: string): void {
-    winstonLogger.error(message);
-  }
+    static warn(message: string): void {
+        getLogger().warn(message);
+    }
 
-  static debug(message: string): void {
-    winstonLogger.debug(message);
-  }
+    static error(message: string): void {
+        getLogger().error(message);
+    }
+
+    static debug(message: string): void {
+        getLogger().debug(message);
+    }
+
 }

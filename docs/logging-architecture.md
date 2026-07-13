@@ -2,7 +2,7 @@
 
 **Project:** Toolshop Test Automation Framework  
 **Status:** Approved  
-**Version:** 1.0  
+**Version:** 2.0  
 **Last Updated:** July 2026
 
 ---
@@ -78,23 +78,22 @@ All logging implementation details are hidden behind the logging layer.
       ┌────────────┼────────────┐
       │            │            │
       ▼            ▼            ▼
-Page Objects   API Classes   Fixtures
+Page Objects   API Classes   Test Hooks
       │            │            │
-      │            │            ├── Initialize Logger
-      │            │            └── Dispose Logger
       └────────────┴────────────┘
                    │
                    ▼
                 Logger
                    │
                    ▼
-               LogManager
+             Winston Factory
                    │
                    ▼
-            Winston Logger
-                   │
-                   ▼
-                Winston
+              Winston Logger
+             ┌───────────────┐
+             │               │
+             ▼               ▼
+        Console Output   Worker Log File
 ```
 
 Each layer has a dedicated responsibility.
@@ -103,7 +102,7 @@ Each layer has a dedicated responsibility.
 
 ## 4.2 Components
 
-### Logger
+### 4.2.1 Logger
 
 The `Logger` class is the public logging interface used throughout the framework.
 
@@ -118,34 +117,23 @@ No framework component should communicate directly with Winston.
 
 ---
 
-### LogManager
+### 4.2.2 Winston Factory
 
-The `LogManager` manages the logger lifecycle.
+`winstonLogger.ts` is responsible for creating and configuring the Winston logger.
 
 Responsibilities include:
 
-- Creating a logger for each test.
-- Managing logger instances.
-- Configuring log destinations.
-- Managing log files.
-- Disposing logger resources after test execution.
+- Creating the logger instance on first use (lazy initialization)
+- Configuring transports
+- Configuring log formatting
+- Managing log file naming
+- Creating one log file per Playwright worker
 
-The rest of the framework does not know how loggers are created or managed.
+Each worker writes exclusively to its own log file to prevent concurrent file access during parallel execution.
 
----
+The logger instance is created only when the first log message is written. 
 
-### Winston Logger
-
-`winstonLogger` contains the Winston configuration only.
-
-Examples include:
-
-- transports
-- log format
-- log level
-- timestamps
-
-It contains no framework logic.
+This avoids unnecessary log file creation during Playwright worker initialization.
 
 ---
 
@@ -201,16 +189,11 @@ Business validation belongs to the test itself.
 
 ---
 
-## 5.4 Fixtures
+## 5.4 Test Lifecycle Logging
 
-Fixtures are responsible for the logging lifecycle.
+The framework uses Playwright's `beforeEach` and `afterEach` hooks to log the start and end of each test.
 
-Responsibilities include:
-
-- Initializing the logger before each test.
-- Disposing the logger after each test.
-
-Fixtures should not contain business logging.
+These hooks are defined locally in each test specification to keep the implementation simple and easy to understand.
 
 ---
 
@@ -226,34 +209,49 @@ Simple helper methods or value transformations should not produce log entries.
 
 Playwright executes tests in parallel using multiple workers.
 
-Writing all log entries into a single file would produce interleaved and difficult-to-read logs.
-
-To keep logs isolated and easy to analyse, the framework creates:
-
-- One log directory per test execution.
-- One log file per test.
+To avoid concurrent writes to the same log file, the framework creates one dedicated log file per Playwright worker.
 
 Example:
 
 ```text
 logs/
-    2026-07-10_14-30-05/
-        T1_login_validUser.log
-        T4_login_invalidUser.log
-        T1_registration.log
-        T1_productSearch.log
+    20260710_181523_worker_0.log
+    20260710_181523_worker_1.log
 ```
+
+Each log file contains all log entries produced by the tests executed by that worker.
 
 This approach provides:
 
-- Isolated logs for each test.
-- Better readability during parallel execution.
-- Easier debugging.
-- Cleaner CI/CD artifacts.
+- Safe parallel execution
+- No concurrent file access
+- Simple implementation
+- Easy debugging
+- Maintainable logging architecture
+
+The worker identifier is automatically provided by Playwright using the `TEST_WORKER_INDEX` environment variable.
 
 ---
 
-# 7. Future Improvements
+# 7. Logger Lifecycle
+
+The framework uses lazy initialization.
+
+The Winston logger is not created when the framework starts.
+
+Instead, it is created automatically when the first log message is written.
+
+This prevents empty log files from being created during module loading.
+
+Advantages:
+
+- No unnecessary log files
+- Faster framework startup
+- Simpler architecture
+- No explicit logger initialization
+- No logger disposal required
+
+# 8. Future Improvements
 
 The architecture is designed to support future enhancements without changing existing tests.
 
@@ -261,27 +259,26 @@ Potential extensions include:
 
 - Configurable log levels
 - Colored console output
-- JSON logging
+- Structured JSON logging
 - Log rotation
 - CI/CD integration
-- Allure attachments
 - Testiny integration
-- Centralized log aggregation (e.g. ELK, Splunk or Datadog)
+- Automatic log cleanup
 
 Because all framework code uses the `Logger` abstraction, these improvements can be implemented without modifying Page Objects, API classes or test specifications.
 
 ---
 
-# 8. Summary
+# 9. Summary
 
 The logging architecture follows a layered design.
 
 - **Tests** describe business behaviour.
 - **Page Objects** describe user interactions.
 - **API classes** describe technical communication.
-- **Fixtures** manage the logger lifecycle.
+- **Test hooks** log the test lifecycle.
 - **Logger** provides a stable logging interface.
-- **LogManager** manages logger instances.
+- **Winston Factory** creates the logger on first use.
 - **Winston** remains an implementation detail hidden behind the framework abstraction.
 
-This architecture keeps the framework maintainable, scalable and easy to understand for new team members while supporting future enhancements with minimal impact on the existing codebase.
+The framework creates one log file per Playwright worker to support reliable parallel execution while keeping the implementation simple and maintainable.
