@@ -47,3 +47,30 @@ test('T1_registration_validUser_userIsRegistered', async ({ page, request }) => 
     expect(responseBody.access_token).toBeTruthy();
     expect(responseBody.token_type).toBe('bearer');
 });
+
+test('T4_registration_existingEmail_userSeesErrorMessage', async ({ page, request }) => {
+
+    const registerPage = new RegistrationPage(page);
+
+    await registerPage.openRegistrationPage();
+
+    const user: User = {
+        ...userData,
+        email: generateUniqueEmail()
+    };
+
+    //create user via API to simulate existing user
+    const userApi = new UserApi();
+    await userApi.createUser(request, user);
+
+    // Attempt to register the same user again
+    await registerPage.registerUser(user);
+
+    
+    Logger.info('Verifying registration failure due to existing email');
+    await expect(page).toHaveURL(/.*\/register$/);
+    await expect(registerPage.registerErrorMessage).toBeVisible();
+    await expect(registerPage.registerErrorMessage)
+    .toHaveText('A customer with this email address already exists.');
+
+});

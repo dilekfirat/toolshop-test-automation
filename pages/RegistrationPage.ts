@@ -17,7 +17,7 @@ export class RegistrationPage {
     readonly emailInput: Locator;
     readonly passwordInput: Locator;
     readonly registerButton: Locator;
-    //readonly emailErrorMessage: Locator;
+    readonly registerErrorMessage: Locator;
     //readonly passwordErrorMessage: Locator;
 
 
@@ -36,7 +36,7 @@ export class RegistrationPage {
         this.emailInput = page.locator('[data-test="email"]');
         this.passwordInput = page.locator('[data-test="password"]');
         this.registerButton = page.locator('[data-test="register-submit"]');
-        //this.errorMessage = page.locator('[data-test="register-error"]');
+        this.registerErrorMessage = page.locator('[data-test="register-error"]');
     }
 
     async openRegistrationPage(): Promise<void> {
