@@ -11,7 +11,7 @@ The purpose of test automation is to:
 - Improve software quality through repeatable and reliable test execution.
 - Support Continuous Integration and Continuous Delivery (CI/CD).
 - Reduce repetitive manual testing activities.
-- Enable sustainable and maintainable automated testing across projects.
+- Enable sustainable and maintainable automated testing throughout the project lifecycle.
 
 Test automation complements manual testing but does not replace exploratory testing, usability testing, or other testing activities that require human judgment.
 
@@ -26,7 +26,7 @@ The organization pursues the following objectives for test automation:
 - Improve release confidence through reliable regression testing.
 - Support continuous testing within CI/CD pipelines.
 - Increase test execution efficiency while reducing manual effort.
-- Promote reusable automation solutions and shared quality standards.
+- Promote reusable automation solutions and consistent quality standards. 
 - Ensure long-term sustainability of automation assets.
 
 ---
@@ -44,15 +44,15 @@ The following principles shall govern all test automation activities:
 - Automated tests shall not rely on shared or unstable environments whenever possible.
 - Automation shall focus on stable and suitable functionality.
 - Test automation solutions shall follow established organizational coding standards and architectural guidelines.
-- Projects shall continuously evaluate the effectiveness and value of automated tests.
+- The effectiveness and value of automated tests shall be continuously evaluated.
 
 ---
 
 ## 6.4 Scope of Test Automation
 
-Projects shall evaluate automation opportunities based on project objectives, technical feasibility, business value, and identified risks.
+Automation opportunities shall be evaluated based on business value, technical feasibility, and identified risks.
 
-For the Toolshop project, test automation focuses on the following test levels:
+The current automation scope includes the following test levels and test types:
 
 ### Test Levels
 
@@ -65,13 +65,9 @@ For the Toolshop project, test automation focuses on the following test levels:
 - Regression Testing
 - End-to-End Testing
 
-The current automation scope focuses on API Testing and System Testing (UI). Unit testing is performed by the development team and is not part of the current automation scope.
-
 ---
 
 ## 6.5 Test Automation Strategy
-
-Each project shall define, maintain, and regularly review a Test Automation Strategy.
 
 The Test Automation Strategy shall define at least:
 
@@ -97,7 +93,7 @@ Test automation is a shared responsibility across the development team.
 
 | Role | Responsibilities |
 |------|------------------|
-| Developers | Develop and maintain automated unit tests, support automation activities, and resolve automation-related defects within the application. |
+| Developers | Support automation activities, and resolve automation-related defects within the application. |
 | Test Engineer | Identify automation candidates, design automated test cases, review automation results, and collaborate with the development team. |
 | Test Automation Engineer | Design and maintain the automation framework, implement automated tests, maintain automation assets, and promote automation standards and best practices. |
 | Product Owner | Prioritize automation efforts based on business value, product risks, and project objectives. |
@@ -109,7 +105,7 @@ Test automation is a shared responsibility across the development team.
 
 Automated tests shall use controlled, reliable, and appropriately managed test data.
 
-Projects shall ensure that:
+Test data management shall ensure that:
 
 - test data is suitable for the intended test scenarios.
 - test data creation is automated where technically feasible.
@@ -125,7 +121,7 @@ Projects shall ensure that:
 
 Where technically feasible, automated tests shall be integrated into the organization's CI/CD pipeline.
 
-Projects should define appropriate execution stages for automated test suites, such as:
+Appropriate execution stages should be defined for automated test suites, such as:
 
 - API tests
 - UI smoke tests
@@ -140,7 +136,7 @@ Automated test execution shall provide timely feedback to development teams and 
 
 Automated tests are software assets and shall be maintained throughout their lifecycle.
 
-Projects shall ensure that automated tests are:
+Automated tests shall be:
 
 - reviewed regularly,
 - updated when application behavior changes,
@@ -154,7 +150,7 @@ Obsolete, duplicated, or unreliable automated tests shall be addressed to reduce
 
 ## 6.10 Test Automation Metrics
 
-Projects shall define and monitor appropriate metrics to evaluate the effectiveness of test automation.
+Appropriate metrics shall be defined and monitored to evaluate the effectiveness of test automation.
 
 Relevant metrics may include:
 
@@ -174,7 +170,7 @@ Metrics shall be used to support continuous improvement rather than individual p
 
 All test automation activities shall comply with applicable organizational policies, quality standards, and regulatory requirements.
 
-Projects shall ensure that:
+The following governance requirements shall apply:
 
 - automation frameworks follow approved architectural principles.
 - automation code is version controlled.
