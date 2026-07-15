@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { HomePage } from '../pages/HomePage';
 import { ProductApi } from '../api/ProductApi';
 import { Logger } from '../utils/logger/logger';
+import productData from '../test-data/productSearch.json';
 
 // Test lifecycle logging
 test.beforeEach(async ({}, testInfo) => {
@@ -31,5 +32,22 @@ test('T1_productSearch_validProduct_userCanSearchForProduct', async ({ page, req
 
     await expect(
         homePage.getProductByName(product.name)
+    ).toBeVisible();
+});
+
+test('T4_productSearch_searchNonExistingProduct_noResultsFound', async ({ page }) => {
+
+    const homePage = new HomePage(page);
+    await homePage.openHomePage();
+
+    await homePage.searchForProduct(productData.nonExistingProduct);
+
+    Logger.info('Verifying search results for non-existing product');
+    await expect(
+        homePage.searchResultCount
+    ).toContainText(productData.nonExistingProduct);
+
+    await expect(
+        homePage.noResultsFoundMessage
     ).toBeVisible();
 });

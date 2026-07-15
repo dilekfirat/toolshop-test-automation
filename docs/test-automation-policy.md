@@ -1,6 +1,6 @@
-# 6. Test Automation
+# Test Automation Policy
 
-## 6.1 Purpose
+## 1.1 Purpose
 
 Test automation is an essential part of the organization's quality assurance activities and supports the delivery of reliable, maintainable, and high-quality software.
 
@@ -17,7 +17,7 @@ Test automation complements manual testing but does not replace exploratory test
 
 ---
 
-## 6.2 Test Automation Objectives
+## 1.2 Test Automation Objectives
 
 The organization pursues the following objectives for test automation:
 
@@ -31,7 +31,7 @@ The organization pursues the following objectives for test automation:
 
 ---
 
-## 6.3 Test Automation Principles
+## 1.3 Test Automation Principles
 
 The following principles shall govern all test automation activities:
 
@@ -48,7 +48,7 @@ The following principles shall govern all test automation activities:
 
 ---
 
-## 6.4 Scope of Test Automation
+## 1.4 Scope of Test Automation
 
 Automation opportunities shall be evaluated based on business value, technical feasibility, and identified risks.
 
@@ -67,7 +67,7 @@ The current automation scope includes the following test levels and test types:
 
 ---
 
-## 6.5 Test Automation Strategy
+## 1.5 Test Automation Strategy
 
 The Test Automation Strategy shall define at least:
 
@@ -87,7 +87,7 @@ The Test Automation Strategy shall align with this Test Policy and applicable or
 
 ---
 
-## 6.6 Roles and Responsibilities
+## 1.6 Roles and Responsibilities
 
 Test automation is a shared responsibility across the development team.
 
@@ -101,7 +101,7 @@ Test automation is a shared responsibility across the development team.
 
 ---
 
-## 6.7 Test Data Management
+## 1.7 Test Data Management
 
 Automated tests shall use controlled, reliable, and appropriately managed test data.
 
@@ -117,7 +117,7 @@ Test data management shall ensure that:
 
 ---
 
-## 6.8 Continuous Integration and Continuous Delivery (CI/CD)
+## 1.8 Continuous Integration and Continuous Delivery (CI/CD)
 
 Where technically feasible, automated tests shall be integrated into the organization's CI/CD pipeline.
 
@@ -132,7 +132,7 @@ Automated test execution shall provide timely feedback to development teams and 
 
 ---
 
-## 6.9 Maintenance
+## 1.9 Maintenance
 
 Automated tests are software assets and shall be maintained throughout their lifecycle.
 
@@ -148,7 +148,7 @@ Obsolete, duplicated, or unreliable automated tests shall be addressed to reduce
 
 ---
 
-## 6.10 Test Automation Metrics
+## 1.10 Test Automation Metrics
 
 Appropriate metrics shall be defined and monitored to evaluate the effectiveness of test automation.
 
@@ -166,7 +166,7 @@ Metrics shall be used to support continuous improvement rather than individual p
 
 ---
 
-## 6.11 Governance and Compliance
+## 1.11 Governance and Compliance
 
 All test automation activities shall comply with applicable organizational policies, quality standards, and regulatory requirements.
 
@@ -184,7 +184,7 @@ Governance activities should support consistency, maintainability, auditability,
 
 ---
 
-## 6.12 AI-Supported Test Automation
+## 1.12 AI-Supported Test Automation
 
 Artificial Intelligence (AI) may be used to support test automation activities where it provides measurable value.
 

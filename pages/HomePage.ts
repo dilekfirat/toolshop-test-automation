@@ -6,6 +6,7 @@ export class HomePage {
     readonly searchInput: Locator;
     readonly searchButton: Locator;
     readonly searchResultCount: Locator;
+    readonly noResultsFoundMessage: Locator;
 
 
     constructor(page: Page) {
@@ -14,6 +15,7 @@ export class HomePage {
         this.searchButton = page.locator('[data-test="search-submit"]');
         this.searchResultCount =
             page.locator('[data-test="search-result-count"]');
+        this.noResultsFoundMessage = page.locator('[data-test="no-results"]');
     }
 
     async openHomePage(): Promise<void> {
